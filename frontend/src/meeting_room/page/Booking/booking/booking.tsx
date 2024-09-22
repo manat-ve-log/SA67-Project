@@ -137,7 +137,7 @@ const Booking: React.FC<bookingNew> = ({ room }) => {
   
       if (res) {
         antdMessage.success(res.message || "Booking created successfully.");
-        setTimeout(() => navigate("/booking-meeting-rooms"), 2000);
+        setTimeout(() => navigate("/login/booking-meeting-rooms"), 2000);
         
       } else {
         antdMessage.error(res.message || "Failed to create booking.");

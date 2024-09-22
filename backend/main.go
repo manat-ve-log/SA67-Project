@@ -64,10 +64,11 @@ func main() {
 
 		
 		// meetingRoom Routes
+		// meetingRoom Routes
 		router.GET("/meetingRoom", meeting_room.ListMeetingRoom)
 		router.GET("/meetingRoom/:id", meeting_room.GetMeetingRoom) // Corrected route name
 		router.POST("/meetingRoom", meeting_room.CreateMeetingRoom) // Assuming you want to create a meeting room
-		router.PATCH("/meetingRoom", meeting_room.UpdateMeetingRoom)
+		router.PATCH("/meetingRoom/:id", meeting_room.UpdateMeetingRoom)
 		router.DELETE("/meetingRoom/:id", meeting_room.DeleteMeetingRoom)
 
 		// customerMeetingRoom Routes
@@ -76,7 +77,9 @@ func main() {
 		router.POST("/customerMeetingRoom", meeting_room.CreateCustomerMeetingRoom) // Assuming you want to create a customer meeting room
 		router.PATCH("/customerMeetingRoom", meeting_room.UpdateCustomerMeetingRoom)
 		router.DELETE("/customerMeetingRoom/:id", meeting_room.DeleteCustomerMeetingRoom)
-
+		// duration with booking
+		router.GET("/duration",meeting_room.ListDuration)
+		router.GET("/bookingMeetingRoom/Date",meeting_room.GetDurationByBookingID)
 		// bookingMeetingRoom Routes
 		router.GET("/bookingMeetingRoom", meeting_room.ListBookingMeetingRoom)
 		router.GET("/bookingMeetingRoom/:id", meeting_room.GetBookingMeetingRoom) // Corrected route name

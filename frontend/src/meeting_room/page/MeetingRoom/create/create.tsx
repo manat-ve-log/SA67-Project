@@ -58,7 +58,7 @@ const CreatePopup: React.FC<CreatePopupProps> = ({ closePopup }) => {
             if (res) {
                 messageApi.success("Room created successfully.");
                 setTimeout(() => {
-                    navigate("/meeting-rooms");
+                    navigate("/login/meeting-rooms");
                 }, 2000);
             } else {
                 messageApi.error("Failed to create room.");

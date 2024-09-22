@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Form, Input, Modal, message as antdMessage, Upload, Image, Row, Col } from 'antd';
 import { PlusOutlined } from "@ant-design/icons";
 import type { UploadFile, UploadProps } from 'antd';
-import ImgCrop from 'antd-img-crop';
 import { MeetingInterface } from "../../../interface/IMeetingRoom";
 import { DeleteMeetingRoomByID, UpdateMeetingRoom } from "../../../service/https";
 import { useNavigate } from 'react-router-dom';
@@ -49,12 +48,21 @@ const EditPopup: React.FC<EditPopupProps> = ({ room, closePopup, onDelete }) => 
 
     const onFinish = async (values: MeetingInterface) => {
         values.ID = room?.ID;
+        const capacity = parseInt(values.Capacity, 10);
+        const roomSize = parseFloat(values.RoomSize);
+        const airCondition = parseInt(values.AirCondition, 10);
+        const chair = parseInt(values.Chair, 10);
+        values.Capacity = capacity;
+        values.RoomSize = roomSize;
+        values.AirCondition = airCondition;
+        values.Chair = chair;
         values.Image = fileList.length > 0 ? fileList[0].thumbUrl : room?.Image;
         try {
             const res = await UpdateMeetingRoom(values);
+            console.log(values)
             if (res) {
                 antdMessage.success("Room updated successfully.");
-                navigate("/meeting-rooms");
+                navigate("/login/meeting-rooms");
                 closePopup?.();
             } else {
                 antdMessage.error("Failed to update room.");
